@@ -1,0 +1,66 @@
+[package]
+name = "solana-copy-trader"
+version = "1.6.63"
+edition = "2021"
+description = "High-performance Solana copy-trading bot in Rust"
+
+[[bin]]
+name = "copy-trader"
+path = "src/main.rs"
+
+[dependencies]
+# Solana SDK
+solana-sdk = "2.2"
+solana-client = "2.2"
+solana-transaction-status = "2.2"
+spl-token = "7"
+spl-associated-token-account = "6"
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+
+# gRPC (YellowStone)
+yellowstone-grpc-client = "6"
+yellowstone-grpc-proto = "6"
+tonic = "0.12"
+
+# HTTP client (Jupiter API, Jito)
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+bincode = "1"
+bs58 = "0.5"
+base64 = "0.22"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "ansi"] }
+
+# Config
+dotenvy = "0.15"
+
+# Utils
+anyhow = "1"
+thiserror = "2"
+dashmap = "6"
+chrono = "0.4"
+
+# Borsh for on-chain data deserialization
+borsh = "1"
+
+# Async trait for processor interface
+async-trait = "0.1"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+
+
+
+
